@@ -15,13 +15,23 @@
 ;; I literally have no idea what I'm doing here
 
 ;; Load path setting to allow packages to be loaded
-(let ((default-directory "~/.emacs.d/packs/"))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
+(let ((default-directory
+  (concat user-emacs-directory
+    (convert-standard-filename "packs/"))))
+  (setq load-path
+    (append
+      (let ((load-path (copy-sequence load-path))) ;; Shadow
+        (append 
+          (copy-sequence (normal-top-level-add-to-load-path '(".")))
+          (normal-top-level-add-subdirs-to-load-path)))
+      load-path)))
+
+;; Load the custom libraries
+(load-library "better-defaults")
 
 ;; Enable line wrapping at column 80 globally
 (setq-default fill-column 80)
-(setq auto-fill-mode 1)
+(setq-default auto-fill-mode 1)
 
 ;; Enable line and column numbering
 (line-number-mode 1)
@@ -29,3 +39,9 @@
 
 ;; Fewer button presses, happier programmers
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Redefine tab function to 2-indent spaces
+;; Because that's how I roll
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq-default indent-line-function 'insert-tab)
