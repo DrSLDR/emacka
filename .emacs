@@ -21,3 +21,6 @@
 ;; Enable line and column numbering
 (line-number-mode 1)
 (column-number-mode 1)
+
+;; Fewer button presses, happier programmers
+(defalias 'yes-or-no-p 'y-or-n-p)
