@@ -14,6 +14,11 @@
 ;; DrSLDR Emacs config
 ;; I literally have no idea what I'm doing here
 
+;; Load path setting to allow packages to be loaded
+(let ((default-directory "~/.emacs.d/packs/"))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
+
 ;; Enable line wrapping at column 80 globally
 (setq-default fill-column 80)
 (setq auto-fill-mode 1)
