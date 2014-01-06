@@ -31,7 +31,9 @@
 
 ;; Enable line wrapping at column 80 globally
 (setq-default fill-column 80)
-(setq-default auto-fill-mode 1)
+(defun auto-fill-turn-on ()
+  (auto-fill-mode 1))
+(add-hook 'find-file-hooks 'auto-fill-turn-on)
 
 ;; Enable line and column numbering
 (line-number-mode 1)
