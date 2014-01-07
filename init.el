@@ -28,6 +28,7 @@
 
 ;; Load the custom libraries
 (load-library "better-defaults")
+(load-library "color-theme")
 
 ;; Enable line wrapping at column 80 globally
 (setq-default fill-column 80)
@@ -47,9 +48,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default indent-line-function 'insert-tab)
-
-;; Enable color-themes
-(load-library "color-theme")
 
 ;; Set color scheme to solarized dark
 (require 'color-theme-solarized)
