@@ -47,3 +47,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default indent-line-function 'insert-tab)
+
+;; Enable color-themes
+(load-library "color-theme")
+
+;; Set color scheme to solarized dark
+(require 'color-theme-solarized)
+(load-theme 'solarized-dark t)
