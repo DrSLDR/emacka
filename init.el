@@ -48,9 +48,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default indent-line-function 'insert-tab)
-(defun untabify-everything ()
-  (untabify (point-min) (point-max)))
-(add-hook 'before-save-hook 'untabify-everything)
+(add-hook 'before-save-hook
+  '(lambda () (if (not indent-tabs-mode)
+     (untabify (point-min) (point-max)))))
 
 ;; Set color scheme to solarized dark
 (require 'color-theme-solarized)
