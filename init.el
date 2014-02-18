@@ -28,9 +28,9 @@
 
 ;; Test the custom libraries
 ;; Whine loudly if they aren't there
-(when (require 'better-defaults nil 'noerror) message "Better
+(when (require 'better-defaults nil 'noerror) (message "Better
   Defaults missing. Entire thing (likely) bork'd. Re-clone
-  repo.")
+  repo."))
 
 ;; Load the custom libraries
 (load-library "better-defaults")
