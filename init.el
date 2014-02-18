@@ -29,10 +29,10 @@
 ;; Test the custom libraries
 ;; Whine loudly if they aren't there
 (when (require 'better-defaults nil 'noerror) 
-  (message "Better Defaults missing. Entire thing (likely)
+  (error "Better Defaults missing. Entire thing (likely)
   bork'd. Re-clone repo."))
 (unless (require 'color-theme-solarized nil 'noerror) 
-  (message "Solarized missing. Install by 'package-install
+  (error "Solarized missing. Install by 'package-install
   color-theme-solarized'."))
 
 ;; Load the custom libraries
