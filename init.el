@@ -34,7 +34,6 @@
 
 ;; Load the custom libraries
 (load-library "better-defaults")
-(load-library "color-theme")
 
 ;; Configure Marmalade for package management
 (require 'package)
@@ -64,10 +63,6 @@
 (add-hook 'before-save-hook
   '(lambda () (if (not indent-tabs-mode)
      (untabify (point-min) (point-max)))))
-
-;; Set color scheme to solarized dark
-(require 'color-theme-solarized)
-(load-theme 'solarized-dark t)
 
 ;; Enable and configure desktops
 (desktop-save-mode 1)
