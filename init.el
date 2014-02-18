@@ -28,7 +28,7 @@
 
 ;; Test the custom libraries
 ;; Whine loudly if they aren't there
-(unless (require 'color-theme-solarized nil 'noerror) 
+(when (require 'solarized-dark nil 'noerror) 
   (error "Solarized missing. Install by 'package-install
   color-theme-solarized'."))
 
