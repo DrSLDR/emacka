@@ -28,9 +28,12 @@
 
 ;; Test the custom libraries
 ;; Whine loudly if they aren't there
-(when (require 'better-defaults nil 'noerror) (message "Better
-  Defaults missing. Entire thing (likely) bork'd. Re-clone
-  repo."))
+(when (require 'better-defaults nil 'noerror) 
+  (message "Better Defaults missing. Entire thing (likely)
+  bork'd. Re-clone repo."))
+(unless (require 'color-theme-solarized nil 'noerror) 
+  (message "Solarized missing. Install by 'package-install
+  color-theme-solarized'."))
 
 ;; Load the custom libraries
 (load-library "better-defaults")
@@ -41,8 +44,10 @@
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-;; Enable line wrapping at column 80 globally
+;; Set Solarized as the color theme
+(load-theme 'solarized-dark t)
 
+;; Enable line wrapping at column 80 globally
 (defun auto-fill-turn-on ()
   (auto-fill-mode 1)
   (setq-default fill-column 80))
