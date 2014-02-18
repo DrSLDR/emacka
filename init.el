@@ -28,12 +28,17 @@
 
 ;; Test the custom libraries
 ;; Whine loudly if they aren't there
-(when (require 'better-defaults nil 'noerror) 
-  (error "Better Defaults missing. Entire thing (likely)
-  bork'd. Re-clone repo."))
-(unless (require 'color-theme-solarized nil 'noerror) 
-  (error "Solarized missing. Install by 'package-install
-  color-theme-solarized'."))
+(unless (is-file-manually-installed "better-defaults.el") (error "Better Defaults
+  missing. Entire thing (likely) bork'd. Re-clone repo."))
+(unless (require 'color-theme-solarized nil 'noerror) (error "Solarized
+  missing. Install by 'package-install color-theme-solarized'."))
+
+;; Tester function to find if manually installed files exist
+(defun is-file-manually-installed (name)
+  (file-exists-p 
+   (concat user-emacs-directory 
+	   (convert-standard-filename "manual/") 
+	   name))
 
 ;; Load the custom libraries
 (load-library "better-defaults")
