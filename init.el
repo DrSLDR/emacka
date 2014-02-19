@@ -26,17 +26,11 @@
           (normal-top-level-add-subdirs-to-load-path)))
       load-path)))
 
-;; Test the custom libraries
-;; Whine loudly if they aren't there
-(when (require 'solarized-dark nil 'noerror) 
-  (error "Solarized missing. Install by 'package-install
-  color-theme-solarized'."))
-
 ;; Load the custom libraries
 ;; Now complete with error handling
 (unless 
     (condition-case nil
-  (load-library "better-defaults")
+        (load-library "better-defaults")
       (error nil))
   (message "[DrSLDR] Better Defaults not found. Re-clone repo."))
 
@@ -47,7 +41,12 @@
 (package-initialize)
 
 ;; Set Solarized as the color theme and shouts if it's missing
-(load-theme 'solarized-dark t)
+(unless
+    (condition-case nil
+        (load-theme 'solarized-dark t)
+      (error nil))
+  (message "[DrSLDR] Solarized not found. Install by 'package-install
+  color-theme-solarized'."))
 
 ;; Enable line wrapping at column 80 globally
 (defun auto-fill-turn-on ()
