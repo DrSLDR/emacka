@@ -33,7 +33,12 @@
   color-theme-solarized'."))
 
 ;; Load the custom libraries
-(load-library "better-defaults")
+;; Now complete with error handling
+(unless 
+    (condition-case nil
+  (load-library "better-defaults")
+      (error nil))
+  (message "[DrSLDR] Better Defaults not found. Re-clone repo."))
 
 ;; Configure Marmalade for package management
 (require 'package)
@@ -41,7 +46,7 @@
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-;; Set Solarized as the color theme
+;; Set Solarized as the color theme and shouts if it's missing
 (load-theme 'solarized-dark t)
 
 ;; Enable line wrapping at column 80 globally
