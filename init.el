@@ -11,10 +11,21 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; DrSLDR Emacs config
-;; I literally have no idea what I'm doing here
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                            DrSLDR Emacs config                             ;;
+;;                 I literally have no idea what I'm doing here               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Load path setting to allow packages to be loaded
+;;;;;;;;;;;;;;;;;;;;;;;;;;; Setup package repository ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Configure Marmalade for package management
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Set load path ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (let ((default-directory
   (concat user-emacs-directory
     (convert-standard-filename "manual/"))))
@@ -26,14 +37,20 @@
           (normal-top-level-add-subdirs-to-load-path)))
       load-path)))
 
-;; Confirm auto-installed packages
+;;;;;;;;;;;;;;;;;;;;;; Check for auto-installed packages ;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Prelude list
 (defvar prelude-packages
   '(auctex color-theme-solarized)
   "A list of packages that should be installed; tested on launch.")
+
+;; Tester function
 (defun prelude-packages-installed-p ()
   (loop for p in prelude-packages
         when (not (package-installed-p p)) do (return nil)
         finally (return t)))
+
+;; Test-and-install loop
 (unless (prelude-packages-installed-p)
   ;; Look for newer versions of installed packages
   (message "%s" "Emacs Prelude is now looking for missing packages...")
@@ -44,39 +61,38 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
-;; Load the custom libraries
-;; Now complete with error handling
+;;;;;;;;;;;;;;;;;;;;;;; Load manually installed packages ;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Better defaults
 (unless 
     (condition-case nil
         (load-library "better-defaults")
       (error nil))
   (message "[DrSLDR] Better Defaults not found. Re-clone repo."))
 
+;; Auto completion
 (unless
     (condition-case nil
         (require 'auto-complete-config)
       (error nil))
   (message "[DrSLDR] Auto Complete not found. Re-clone repo."))
 
+;; Auto completion math support
 (unless
     (condition-case nil
         (require 'ac-math)
       (error nil))
   (message "[DrSLDR] Auto Complete math library not found. Re-clone repo."))
 
-;; Configure Auto-complete
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;; Configure auto-complete ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (add-to-list 'ac-dictionary-directories 
              "~/.emacs.d/manual/auto-complete/ac-dict")
 (ac-config-default)
 
-;; Load in AUCTeX
-(unless
-    (condition-case nil
-        (load "auctex.el" nil t t)
-      (error nil))
-  (message "[DrSLDR] AUCTeX not found. Install by 'package-install auctex'."))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Configure ac-math ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Configure ac-math
 (add-to-list 'ac-modes 'latex-mode)
 (defun ac-LaTeX-mode-setup ()
   (setq ac-sources
@@ -88,35 +104,31 @@
 (global-auto-complete-mode t)
 (setq ac-math-unicode-in-math-p t)
 
-;; Configure Marmalade for package management
-(require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
+;;;;;;;;;;;;;;;;;;;;;;; Set Solarized as the color theme ;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Set Solarized as the color theme and shouts if it's missing
-(unless
-    (condition-case nil
-        (load-theme 'solarized-dark t)
-      (error nil))
-  (message "[DrSLDR] Solarized not found. Install by 'package-install
-  color-theme-solarized'."))
+(load-theme 'solarized-dark t)
 
-;; Enable line wrapping at column 80 globally
+;;;;;;;;;;;;;;;;;;;;;;;;;; Set line wrapping globally ;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun auto-fill-turn-on ()
   (auto-fill-mode 1)
   (setq-default fill-column 80))
 (add-hook 'find-file-hooks 'auto-fill-turn-on)
 
-;; Enable line and column numbering
+;;;;;;;;;;;;;;;;;;;;;;; Enable line and column numbering ;;;;;;;;;;;;;;;;;;;;;;;
+
 (line-number-mode 1)
 (column-number-mode 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Alias yes-or-no-p ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Fewer button presses, happier programmers
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Redefine tab function to 2-indent spaces
-;; Because that's how I roll
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Redefine tab ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; 2-indent spaces. Because that's how I roll
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default indent-line-function 'insert-tab)
@@ -124,56 +136,6 @@
   '(lambda () (if (not indent-tabs-mode)
      (untabify (point-min) (point-max)))))
 
-;; Enable and configure desktops
-(desktop-save-mode 1)
-(setq history-length 512)
-(setq desktop-buffers-not-to-save
-  (concat "\\("
-          "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
-          "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-          "\\)$"))
-(add-to-list 'desktop-modes-not-to-save 'dired-mode)
-(add-to-list 'desktop-modes-not-to-save 'Info-mode)
-(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
-(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
-
-;; use only one desktop
-(setq desktop-path '("~/.emacs.d/"))
-(setq desktop-dirname "~/.emacs.d/")
-(setq desktop-base-file-name "emacs-desktop")
-
-;; remove desktop after it's been read
-(add-hook 'desktop-after-read-hook
-    '(lambda ()
-       ;; desktop-remove clears desktop-dirname
-       (setq desktop-dirname-tmp desktop-dirname)
-       (desktop-remove)
-       (setq desktop-dirname desktop-dirname-tmp)))
-
-(defun saved-session ()
-  (file-exists-p (concat desktop-dirname "/" desktop-base-file-name)))
-
-;; use session-restore to restore the desktop manually
-(defun session-restore ()
-  "Restore a saved emacs session."
-  (interactive)
-  (if (saved-session)
-      (desktop-read)
-    (message "No desktop found.")))
-
-;; use session-save to save the desktop manually
-(defun session-save ()
-  "Save an emacs session."
-  (interactive)
-  (if (saved-session)
-      (if (y-or-n-p "Overwrite existing desktop? ")
-    (desktop-save-in-desktop-dir)
-  (message "Session not saved."))
-  (desktop-save-in-desktop-dir)))
-
-;; ask user whether to restore desktop at start-up
-(add-hook 'after-init-hook
-    '(lambda ()
-       (if (saved-session)
-     (if (y-or-n-p "Restore desktop? ")
-         (session-restore)))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
