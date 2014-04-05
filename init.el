@@ -40,10 +40,28 @@
       (error nil))
   (message "[DrSLDR] Auto Complete not found. Re-clone repo."))
 
+(unless
+    (condition-case nil
+        (require 'ac-math)
+      (error nil))
+  (message "[DrSLDR] Auto Complete math library not found. Re-clone repo."))
+
 ;; Configure Auto-complete
 (add-to-list 'ac-dictionary-directories 
              "~/.emacs.d/manual/auto-complete/ac-dict")
 (ac-config-default)
+
+;;Configure ac-math
+(add-to-list 'ac-modes 'latex-mode)
+(defun ac-LaTeX-mode-setup ()
+  (setq ac-sources
+        (append '(ac-source-math-unicode ac-source-math-latex
+                                         ac-source-latex-commands)
+                ac-sources))
+)
+(add-hook 'LaTeX-mode-hook 'ac-LaTeX-mode-setup)
+(global-auto-complete-mode t)
+(setq ac-math-unicode-in-math-p t)
 
 ;; Configure Marmalade for package management
 (require 'package)
