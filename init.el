@@ -45,13 +45,18 @@
   "A list of packages that should be installed; tested on launch.")
 
 ;; Tester function
-(defun prelude-packages-installed-p ()
-  (loop for p in prelude-packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
+(defun prelude-packages-installed-p (plist)
+  (let (p exit-flag)
+    (setq exit-flag nil)
+    (while (and plist (not exit-flag))
+      (setq p (car plist))
+      (if (not (package-installed-p p))
+          (setq exit-flag t))
+      (setq plist (cdr plist)))
+    (if exit-flag nil t)))
 
 ;; Test-and-install loop
-(unless (prelude-packages-installed-p)
+(unless (prelude-packages-installed-p prelude-packages)
   ;; Look for newer versions of installed packages
   (message "%s" "Emacs Prelude is now looking for missing packages...")
   (package-refresh-contents)
