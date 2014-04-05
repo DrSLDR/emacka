@@ -26,6 +26,24 @@
           (normal-top-level-add-subdirs-to-load-path)))
       load-path)))
 
+;; Confirm auto-installed packages
+(defvar prelude-packages
+  '(auctex color-theme-solarized)
+  "A list of packages that should be installed; tested on launch.")
+(defun prelude-packages-installed-p ()
+  (loop for p in prelude-packages
+        when (not (package-installed-p p)) do (return nil)
+        finally (return t)))
+(unless (prelude-packages-installed-p)
+  ;; Look for newer versions of installed packages
+  (message "%s" "Emacs Prelude is now looking for missing packages...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  ;; Install any missing packages
+  (dolist (p prelude-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
+
 ;; Load the custom libraries
 ;; Now complete with error handling
 (unless 
@@ -51,7 +69,14 @@
              "~/.emacs.d/manual/auto-complete/ac-dict")
 (ac-config-default)
 
-;;Configure ac-math
+;; Load in AUCTeX
+(unless
+    (condition-case nil
+        (load "auctex.el" nil t t)
+      (error nil))
+  (message "[DrSLDR] AUCTeX not found. Install by 'package-install auctex'."))
+
+;; Configure ac-math
 (add-to-list 'ac-modes 'latex-mode)
 (defun ac-LaTeX-mode-setup ()
   (setq ac-sources
