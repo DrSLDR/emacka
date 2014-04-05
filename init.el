@@ -34,6 +34,17 @@
       (error nil))
   (message "[DrSLDR] Better Defaults not found. Re-clone repo."))
 
+(unless
+    (condition-case nil
+        (require 'auto-complete-config)
+      (error nil))
+  (message "[DrSLDR] Auto Complete not found. Re-clone repo."))
+
+;; Configure Auto-complete
+(add-to-list 'ac-dictionary-directories 
+             "~/.emacs.d/manual/auto-complete/ac-dict")
+(ac-config-default)
+
 ;; Configure Marmalade for package management
 (require 'package)
 (add-to-list 'package-archives
