@@ -141,6 +141,12 @@
   '(lambda () (if (not indent-tabs-mode)
      (untabify (point-min) (point-max)))))
 
+;;;;;;;;;;;;;;;;;;;;;;; Set automatic reloading of PDFs ;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun doc-view-auto-reload-no-fill ()
+  (auto-revert-mode 1))
+(add-hook 'doc-view-mode-hook 'doc-view-auto-reload-no-fill)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
