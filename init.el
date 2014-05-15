@@ -130,7 +130,6 @@
 ;; Fewer button presses, happier programmers
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Redefine tab ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 2-indent spaces. Because that's how I roll
@@ -143,9 +142,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;; Set automatic reloading of PDFs ;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun doc-view-auto-reload-no-fill ()
-  (auto-revert-mode 1))
-(add-hook 'doc-view-mode-hook 'doc-view-auto-reload-no-fill)
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
