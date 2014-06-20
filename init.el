@@ -143,9 +143,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;; Set automatic reloading of PDFs ;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun doc-view-auto-reload-no-fill ()
-  (auto-revert-mode 1))
-(add-hook 'doc-view-mode-hook 'doc-view-auto-reload-no-fill)
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
