@@ -124,12 +124,12 @@
 
 (line-number-mode 1)
 (column-number-mode 1)
+(add-hook 'find-file-hooks 'linum-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Alias yes-or-no-p ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Fewer button presses, happier programmers
 (defalias 'yes-or-no-p 'y-or-n-p)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Redefine tab ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
