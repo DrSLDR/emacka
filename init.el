@@ -120,6 +120,12 @@
   (setq-default fill-column 80))
 (add-hook 'find-file-hooks 'auto-fill-turn-on)
 
+;;;;;;;;;;;;;;;;;;;; Set current line highlighting globally ;;;;;;;;;;;;;;;;;;;;
+
+(defun hl-line-mode-turn-on ()
+  (hl-line-mode 1))
+(add-hook 'find-file-hooks 'hl-line-mode-turn-on)
+
 ;;;;;;;;;;;;;;;;;;;;;;; Enable line and column numbering ;;;;;;;;;;;;;;;;;;;;;;;
 
 (line-number-mode 1)
