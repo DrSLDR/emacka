@@ -170,6 +170,13 @@
 (setq org-cycle-emulate-tab 'white)
 (global-set-key [33554447] (quote org-mode))
 
+(defun org-mode-step-up-and-sort ()
+  "Steps up and sorts the current level of entities"
+  (interactive)
+  (outline-up-heading 1)
+  (org-sort-entries nil ?a))
+(global-set-key (kbd "C-c s") 'org-mode-step-up-and-sort)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; End ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
