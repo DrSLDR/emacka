@@ -12,7 +12,7 @@
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                            DrSLDR Emacs config                             ;;
+;;                             SLDR Emacs config                              ;;
 ;;                 I literally have no idea what I'm doing here               ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -73,21 +73,21 @@
     (condition-case nil
         (load-library "better-defaults")
       (error nil))
-  (message "[DrSLDR] Better Defaults not found. Re-clone repo."))
+  (message "[SLDR] Better Defaults not found. Re-clone repo."))
 
 ;; Auto completion
 (unless
     (condition-case nil
         (require 'auto-complete-config)
       (error nil))
-  (message "[DrSLDR] Auto Complete not found. Re-clone repo."))
+  (message "[SLDR] Auto Complete not found. Re-clone repo."))
 
 ;; Auto completion math support
 (unless
     (condition-case nil
         (require 'ac-math)
       (error nil))
-  (message "[DrSLDR] Auto Complete math library not found. Re-clone repo."))
+  (message "[SLDR] Auto Complete math library not found. Re-clone repo."))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Configure auto-complete ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -176,6 +176,18 @@
   (outline-up-heading 1)
   (org-sort-entries nil ?a))
 (global-set-key (kbd "C-c s") 'org-mode-step-up-and-sort)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; mutt stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Starts the emacs client
+(server-start)
+(add-to-list 'auto-mode-alist '("mutt-.*" . mail-mode))
+
+; Defines mail mode hook function and sets it
+(defun my-mail-mode-hook ()
+  'auto-fill-turn-on
+  (local-set-key "\C-Xk" 'server-edit))
+(add-hook 'mail-mode-hook 'my-mail-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; End ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
