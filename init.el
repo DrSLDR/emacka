@@ -181,13 +181,24 @@
 
 ; Starts the emacs client
 (server-start)
-(add-to-list 'auto-mode-alist '("mutt-.*" . mail-mode))
+(add-to-list 'auto-mode-alist '("mutt.*" . mail-mode))
 
 ; Defines mail mode hook function and sets it
 (defun my-mail-mode-hook ()
   'auto-fill-turn-on
   (local-set-key "\C-Xk" 'server-edit))
 (add-hook 'mail-mode-hook 'my-mail-mode-hook)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Autoclose brackets ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq skeleton-pair t)
+(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)
+;; (global-set-key (kbd "\`") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "<") 'skeleton-pair-insert-maybe)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; End ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
