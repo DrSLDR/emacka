@@ -89,6 +89,40 @@
       (error nil))
   (message "[SLDR] Auto Complete math library not found. Re-clone repo."))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Autoclose brackets ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq skeleton-pair t)
+(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)
+;; (global-set-key (kbd "\`") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "<") 'skeleton-pair-insert-maybe)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Ensure markdown mode is where it should be
+(unless
+    (condition-case nil
+        (file-exists-p "~/.emacs.d/manual/markdown-mode.el")
+      (error nil))
+  (message "[SLDR] Markdown mode not found. Re-clone repo."))
+
+;; Set mode autoload
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; Set some autoclose funstuff
+(add-hook 'markdown-mode-hook 
+          (lambda () 
+            (global-set-key (kbd "*") 'skeleton-pair-insert-maybe)))
+(add-hook 'markdown-mode-hook 
+          (lambda () 
+            (global-set-key (kbd "_") 'skeleton-pair-insert-maybe)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Configure auto-complete ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -188,17 +222,6 @@
   'auto-fill-turn-on
   (local-set-key "\C-Xk" 'server-edit))
 (add-hook 'mail-mode-hook 'my-mail-mode-hook)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Autoclose brackets ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq skeleton-pair t)
-(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)
-;; (global-set-key (kbd "\`") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "<") 'skeleton-pair-insert-maybe)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Expand frame ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
