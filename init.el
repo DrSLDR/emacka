@@ -89,17 +89,6 @@
       (error nil))
   (message "[SLDR] Auto Complete math library not found. Re-clone repo."))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Autoclose brackets ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq skeleton-pair t)
-(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "\'") 'skeleton-pair-insert-maybe)
-;; (global-set-key (kbd "\`") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "<") 'skeleton-pair-insert-maybe)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Ensure markdown mode is where it should be
@@ -153,6 +142,10 @@
   (auto-fill-mode 1)
   (setq-default fill-column 80))
 (add-hook 'find-file-hooks 'auto-fill-turn-on)
+
+;;;;;;;;;;;;;;;;;;;;;;; Set electric autoclose globally ;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'find-file-hooks 'electric-pair-mode)
 
 ;;;;;;;;;;;;;;;;;;;; Set current line highlighting globally ;;;;;;;;;;;;;;;;;;;;
 
