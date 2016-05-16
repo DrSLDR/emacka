@@ -212,9 +212,11 @@
 
 ; Defines mail mode hook function and sets it
 (defun my-mail-mode-hook ()
-  'auto-fill-turn-on
-  (local-set-key "\C-Xk" 'server-edit))
+  'auto-fill-turn-on)
 (add-hook 'mail-mode-hook 'my-mail-mode-hook)
+
+; Set the CTRL-x k combo to kill server buffer globally
+(global-set-key "\C-Xk" 'server-edit)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Expand frame ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
