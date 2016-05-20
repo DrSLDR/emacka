@@ -46,7 +46,7 @@
 
 ;; Prelude list
 (defvar prelude-packages
-  '(auctex color-theme-solarized company)
+  '(auctex solarized-theme company ycmd company-ycmd)
   "A list of packages that should be installed; tested on launch.")
 
 ;; Tester function
