@@ -80,20 +80,6 @@
       (error nil))
   (message "[SLDR] Better Defaults not found. Re-clone repo."))
 
-;; ;; Auto completion
-;; (unless
-;;     (condition-case nil
-;;         (require 'auto-complete-config)
-;;       (error nil))
-;;   (message "[SLDR] Auto Complete not found. Re-clone repo."))
-
-;; ;; Auto completion math support
-;; (unless
-;;     (condition-case nil
-;;         (require 'ac-math)
-;;       (error nil))
-;;   (message "[SLDR] Auto Complete math library not found. Re-clone repo."))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Ensure markdown mode is where it should be
@@ -118,29 +104,19 @@
           (lambda () 
             (global-set-key (kbd "_") 'skeleton-pair-insert-maybe)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;; Configure auto-complete ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;; Configure YCMD autocomplete ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Load in emacs-ycmd
 (require 'ycmd)
 (set-variable 'ycmd-server-command '("ycmd-server"))
-(add-hook 'after-init-hook #'global-ycmd-mode)
+(ycmd-setup)
 
-;; (add-to-list 'ac-dictionary-directories 
-;;              "~/.emacs.d/manual/auto-complete/ac-dict")
-;; (ac-config-default)
+;; Load in company-ycmd
+(require 'company-ycmd)
+(company-ycmd-setup)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Configure ac-math ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-to-list 'ac-modes 'latex-mode)
-(defun ac-LaTeX-mode-setup ()
-  (setq ac-sources
-        (append '(ac-source-math-unicode ac-source-math-latex
-                                         ac-source-latex-commands)
-                ac-sources))
-)
-(add-hook 'LaTeX-mode-hook 'ac-LaTeX-mode-setup)
-(global-auto-complete-mode t)
-(setq ac-math-unicode-in-math-p t)
+;; Enable company everywhere
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;; Set Solarized as the color theme ;;;;;;;;;;;;;;;;;;;;;;;
 
