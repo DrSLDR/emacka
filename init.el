@@ -115,7 +115,7 @@
 
 ;; Load in emacs-ycmd
 (require 'ycmd)
-(set-variable 'ycmd-server-command '("ycmd-server"))
+(set-variable 'ycmd-server-command '("python" "/home/sldr/bin/ycmd-server"))
 (ycmd-setup)
 
 ;; Load in company-ycmd
