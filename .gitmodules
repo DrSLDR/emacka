@@ -1,3 +1,6 @@
 [submodule "manual/better-defaults"]
 	path = manual/better-defaults
 	url = https://github.com/technomancy/better-defaults.git
+[submodule "manual/emacs-dirtree"]
+	path = manual/emacs-dirtree
+	url = https://github.com/zk/emacs-dirtree.git

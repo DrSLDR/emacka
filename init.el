@@ -80,6 +80,13 @@
       (error nil))
   (message "[SLDR] Better Defaults not found. Re-clone repo."))
 
+;; Dirtree
+(require 'tree-mode)
+(require 'windata)
+(require 'dirtree)
+(autoload 'dirtree "dirtree" "Add directory to tree view" t)
+(global-set-key "\C-o" 'dirtree-show)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Ensure markdown mode is where it should be
