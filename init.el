@@ -22,6 +22,11 @@
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives
+               '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Set load path ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -75,19 +80,19 @@
       (error nil))
   (message "[SLDR] Better Defaults not found. Re-clone repo."))
 
-;; Auto completion
-(unless
-    (condition-case nil
-        (require 'auto-complete-config)
-      (error nil))
-  (message "[SLDR] Auto Complete not found. Re-clone repo."))
+;; ;; Auto completion
+;; (unless
+;;     (condition-case nil
+;;         (require 'auto-complete-config)
+;;       (error nil))
+;;   (message "[SLDR] Auto Complete not found. Re-clone repo."))
 
-;; Auto completion math support
-(unless
-    (condition-case nil
-        (require 'ac-math)
-      (error nil))
-  (message "[SLDR] Auto Complete math library not found. Re-clone repo."))
+;; ;; Auto completion math support
+;; (unless
+;;     (condition-case nil
+;;         (require 'ac-math)
+;;       (error nil))
+;;   (message "[SLDR] Auto Complete math library not found. Re-clone repo."))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -115,9 +120,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Configure auto-complete ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'ac-dictionary-directories 
-             "~/.emacs.d/manual/auto-complete/ac-dict")
-(ac-config-default)
+;; Load in emacs-ycmd
+(require 'ycmd)
+(set-variable 'ycmd-server-command '("ycmd-server"))
+(add-hook 'after-init-hook #'global-ycmd-mode)
+
+;; (add-to-list 'ac-dictionary-directories 
+;;              "~/.emacs.d/manual/auto-complete/ac-dict")
+;; (ac-config-default)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Configure ac-math ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -206,19 +216,19 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; mutt stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; Starts the emacs client
+;; Starts the emacs client
 (server-start)
 (add-to-list 'auto-mode-alist '("mutt.*" . mail-mode))
 
-; Defines mail mode hook function and sets it
+;; Defines mail mode hook function and sets it
 (defun my-mail-mode-hook ()
   'auto-fill-turn-on)
 (add-hook 'mail-mode-hook 'my-mail-mode-hook)
 
-; Set the CTRL-x k combo to kill server buffer globally
+;; Set the CTRL-x k combo to kill server buffer globally
 (global-set-key "\C-Xk" 'server-edit)
 
-; Resets kill buffer to somewhere more-or-less sensible
+;; Resets kill buffer to somewhere more-or-less sensible
 (global-set-key "\C-x\M-k" 'kill-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Expand frame ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
