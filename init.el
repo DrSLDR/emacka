@@ -218,6 +218,9 @@
 ; Set the CTRL-x k combo to kill server buffer globally
 (global-set-key "\C-Xk" 'server-edit)
 
+; Resets kill buffer to somewhere more-or-less sensible
+(global-set-key "\C-x\M-k" 'kill-buffer)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Expand frame ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (let ((frame (selected-frame)))
