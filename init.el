@@ -162,6 +162,7 @@
 (add-hook 'before-save-hook
   '(lambda () (if (not indent-tabs-mode)
      (untabify (point-min) (point-max)))))
+(setq-default js-indent-level 2)
 
 ;;;;;;;;;;;;;;;;;;;;;;; Set automatic reloading of PDFs ;;;;;;;;;;;;;;;;;;;;;;;;
 
