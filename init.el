@@ -46,7 +46,7 @@
 
 ;; Prelude list
 (defvar prelude-packages
-  '(auctex solarized-theme company ycmd company-ycmd)
+  '(auctex solarized-theme company ycmd company-ycmd neotree)
   "A list of packages that should be installed; tested on launch.")
 
 ;; Tester function
@@ -81,11 +81,7 @@
   (message "[SLDR] Better Defaults not found. Re-clone repo."))
 
 ;; Dirtree
-(require 'tree-mode)
-(require 'windata)
-(require 'dirtree)
-(autoload 'dirtree "dirtree" "Add directory to tree view" t)
-(global-set-key "\C-o" 'dirtree-show)
+(global-set-key "\C-o" 'neotree-toggle)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
