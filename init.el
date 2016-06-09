@@ -3,13 +3,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
+ '(minimap-highlight-line nil)
+ '(minimap-width-fraction 0.1)
+ '(minimap-window-location (quote right)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(minimap-active-region-background ((t (:background "#fdf6e3")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                             SLDR Emacs config                              ;;
@@ -46,7 +49,8 @@
 
 ;; Prelude list
 (defvar prelude-packages
-  '(auctex solarized-theme company ycmd company-ycmd neotree vlf json-mode)
+  '(auctex solarized-theme company ycmd company-ycmd neotree vlf json-mode
+    minimap)
   "A list of packages that should be installed; tested on launch.")
 
 ;; Tester function
@@ -82,6 +86,9 @@
 
 ;; Dirtree
 (global-set-key "\C-o" 'neotree-toggle)
+
+;; Minimap
+(global-set-key "\C-m" 'minimap-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -216,7 +223,6 @@
 (let ((frame (selected-frame)))
   (delete-other-windows)
   (set-frame-size frame 100 60))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Dvorak translations ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
