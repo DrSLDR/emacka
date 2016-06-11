@@ -88,7 +88,7 @@
 (global-set-key "\C-o" 'neotree-toggle)
 
 ;; Minimap
-(global-set-key "\C-m" 'minimap-mode)
+(global-set-key "\C-cm" 'minimap-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
