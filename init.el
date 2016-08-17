@@ -226,8 +226,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Dvorak translations ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-key key-translation-map [?\C-x] [?\C-u])
-(define-key key-translation-map [?\C-u] [?\C-x])
+;(define-key key-translation-map [?\C-x] [?\C-u])
+;(define-key key-translation-map [?\C-u] [?\C-x])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; End ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
