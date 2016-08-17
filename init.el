@@ -3,6 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(inhibit-startup-screen t)
  '(minimap-highlight-line nil)
  '(minimap-width-fraction 0.1)
@@ -89,6 +90,14 @@
 
 ;; Minimap
 (global-set-key "\C-cm" 'minimap-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GUI tweaking ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Disable the menu bar
+(menu-bar-mode -1)
+
+;; Disable the tool bar
+(tool-bar-mode -1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
