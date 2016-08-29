@@ -99,6 +99,11 @@
 ;; Disable the tool bar
 (tool-bar-mode -1)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Unset CTRL+Z ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Who thought this was a good idea, anyway?
+(global-unset-key (kbd "C-z"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Ensure markdown mode is where it should be
@@ -127,7 +132,7 @@
 
 ;; Load in emacs-ycmd
 (require 'ycmd)
-(set-variable 'ycmd-server-command '("python" "/home/sldr/bin/ycmd-server"))
+(set-variable 'ycmd-server-command '("python3" "/home/sldr/bin/ycmd-server"))
 (ycmd-setup)
 
 ;; Load in company-ycmd
