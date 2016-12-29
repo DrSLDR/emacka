@@ -5,18 +5,13 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(inhibit-startup-screen t)
- '(minimap-highlight-line nil)
- '(minimap-width-fraction 0.1)
- '(minimap-window-location (quote right))
- '(package-selected-packages
-   (quote
-    (minimap json-mode vlf neotree company-ycmd ycmd company solarized-theme auctex))))
+)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(minimap-active-region-background ((t (:background "#fdf6e3")))))
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                             SLDR Emacs config                              ;;
@@ -53,8 +48,7 @@
 
 ;; Prelude list
 (defvar prelude-packages
-  '(auctex solarized-theme company ycmd company-ycmd neotree vlf json-mode
-    minimap)
+  '(auctex solarized-theme company ycmd company-ycmd neotree vlf json-mode)
   "A list of packages that should be installed; tested on launch.")
 
 ;; Tester function
@@ -97,9 +91,6 @@
 
 ;; Dirtree
 (global-set-key "\C-o" 'neotree-toggle)
-
-;; Minimap
-(global-set-key "\C-cm" 'minimap-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GUI tweaking ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
