@@ -1,3 +1,6 @@
 [submodule "manual/better-defaults"]
 	path = manual/better-defaults
 	url = https://github.com/technomancy/better-defaults.git
+[submodule "manual/git-commit"]
+	path = manual/git-commit
+	url = https://github.com/jwiegley/git-commit-mode.git

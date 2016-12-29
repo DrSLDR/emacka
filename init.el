@@ -7,7 +7,10 @@
  '(inhibit-startup-screen t)
  '(minimap-highlight-line nil)
  '(minimap-width-fraction 0.1)
- '(minimap-window-location (quote right)))
+ '(minimap-window-location (quote right))
+ '(package-selected-packages
+   (quote
+    (minimap json-mode vlf neotree company-ycmd ycmd company solarized-theme auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -84,6 +87,13 @@
         (load-library "better-defaults")
       (error nil))
   (message "[SLDR] Better Defaults not found. Re-clone repo."))
+
+;; Better defaults
+(unless 
+    (condition-case nil
+        (load-library "git-commit")
+      (error nil))
+  (message "[SLDR] git-commit mode not found. Re-clone repo."))
 
 ;; Dirtree
 (global-set-key "\C-o" 'neotree-toggle)
