@@ -82,12 +82,21 @@
       (error nil))
   (message "[SLDR] Better Defaults not found. Re-clone repo."))
 
-;; Better defaults
+;; Git-commit mode
 (unless 
     (condition-case nil
         (load-library "git-commit")
       (error nil))
   (message "[SLDR] git-commit mode not found. Re-clone repo."))
+
+;; YAML-mode
+(unless 
+    (condition-case nil
+        (load-library "yaml-mode")
+      (error nil))
+  (message "[SLDR] yaml-mode not found. Re-clone repo."))
+(autoload 'yaml-mode "yaml-mode")
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; Dirtree
 (global-set-key "\C-o" 'neotree-toggle)

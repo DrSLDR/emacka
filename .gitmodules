@@ -4,3 +4,6 @@
 [submodule "manual/git-commit"]
 	path = manual/git-commit
 	url = https://github.com/jwiegley/git-commit-mode.git
+[submodule "manual/yaml-mode"]
+	path = manual/yaml-mode
+	url = https://github.com/yoshiki/yaml-mode.git
