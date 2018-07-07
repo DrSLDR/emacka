@@ -142,16 +142,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;; Configure YCMD autocomplete ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Load in emacs-ycmd
-(require 'ycmd)
-(set-variable 'ycmd-server-command '("python3" "/home/sldr/bin/ycmd-server"))
-(ycmd-setup)
+;(require 'ycmd)
+;(set-variable 'ycmd-server-command '("python3" "/home/sldr/bin/ycmd-server"))
+;(ycmd-setup)
 
 ;; Load in company-ycmd
-(require 'company-ycmd)
-(company-ycmd-setup)
+;(require 'company-ycmd)
+;(company-ycmd-setup)
 
 ;; Enable company everywhere
-(add-hook 'after-init-hook 'global-company-mode)
+;(add-hook 'after-init-hook 'global-company-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;; Set Solarized as the color theme ;;;;;;;;;;;;;;;;;;;;;;;
 
