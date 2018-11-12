@@ -49,7 +49,7 @@
 ;; Prelude list
 (defvar prelude-packages
   '(auctex solarized-theme company ycmd company-ycmd neotree vlf json-mode
-           haskell-mode)
+           haskell-mode gruvbox-theme)
   "A list of packages that should be installed; tested on launch.")
 
 ;; Tester function
@@ -155,7 +155,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;; Set Solarized as the color theme ;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'solarized-dark t)
+(load-theme 'gruvbox-dark-hard t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Set line wrapping globally ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
