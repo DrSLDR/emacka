@@ -151,7 +151,7 @@
 ;(company-ycmd-setup)
 
 ;; Enable company everywhere
-;(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;; Set Solarized as the color theme ;;;;;;;;;;;;;;;;;;;;;;;
 
